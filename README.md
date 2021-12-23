@@ -23,3 +23,7 @@ A complete xml GUI project that has the following features:
 9- Decompressing the output ".cxml" file to obtain the original file again.
 
 10- The ability to save the output file of all the previous operations in one of the following appropriate extensions ".json, .xml, .cxml"
+
+## Video Link
+
+[https://drive.google.com/drive/u/0/folders/1YkRrme4L-7cAHQxBbX4T2blJeBh7O33L](https://drive.google.com/drive/u/0/folders/1YkRrme4L-7cAHQxBbX4T2blJeBh7O33L)
