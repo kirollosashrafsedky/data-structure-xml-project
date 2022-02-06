@@ -92,6 +92,7 @@ namespace XmlProject {
 	private: System::Windows::Forms::SaveFileDialog^ saveFileDialog;
 	private: System::Windows::Forms::TextBox^ richTextBoxInput;
 	private: System::Windows::Forms::TextBox^ richTextBoxOutput;
+	private: System::Windows::Forms::Button^ btnShowGraph;
 
 
 
@@ -159,6 +160,7 @@ namespace XmlProject {
 			this->lblOutputfile = (gcnew System::Windows::Forms::Label());
 			this->openFileDialog = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->saveFileDialog = (gcnew System::Windows::Forms::SaveFileDialog());
+			this->btnShowGraph = (gcnew System::Windows::Forms::Button());
 			this->pnlTitleBar->SuspendLayout();
 			this->pnlTitleBarControls->SuspendLayout();
 			this->sideMenu->SuspendLayout();
@@ -316,6 +318,7 @@ namespace XmlProject {
 			// pnlSideMenuControls
 			// 
 			this->pnlSideMenuControls->AutoScroll = true;
+			this->pnlSideMenuControls->Controls->Add(this->btnShowGraph);
 			this->pnlSideMenuControls->Controls->Add(this->btnDecompress);
 			this->pnlSideMenuControls->Controls->Add(this->btnCompress);
 			this->pnlSideMenuControls->Controls->Add(this->btnToJson);
@@ -716,6 +719,27 @@ namespace XmlProject {
 			// 
 			this->saveFileDialog->Filter = L"Xml file|*.xml";
 			// 
+			// btnShowGraph
+			// 
+			this->btnShowGraph->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(83)), static_cast<System::Int32>(static_cast<System::Byte>(49)),
+				static_cast<System::Int32>(static_cast<System::Byte>(84)));
+			this->btnShowGraph->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnShowGraph->FlatAppearance->BorderSize = 0;
+			this->btnShowGraph->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)),
+				static_cast<System::Int32>(static_cast<System::Byte>(13)), static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->btnShowGraph->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(53)),
+				static_cast<System::Int32>(static_cast<System::Byte>(13)), static_cast<System::Int32>(static_cast<System::Byte>(54)));
+			this->btnShowGraph->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnShowGraph->ForeColor = System::Drawing::Color::White;
+			this->btnShowGraph->Location = System::Drawing::Point(0, 526);
+			this->btnShowGraph->Margin = System::Windows::Forms::Padding(0);
+			this->btnShowGraph->Name = L"btnShowGraph";
+			this->btnShowGraph->Size = System::Drawing::Size(276, 60);
+			this->btnShowGraph->TabIndex = 11;
+			this->btnShowGraph->Text = L"Show Graph";
+			this->btnShowGraph->UseVisualStyleBackColor = false;
+			this->btnShowGraph->Click += gcnew System::EventHandler(this, &MainForm::btnShowGraph_Click);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 18);
@@ -1011,6 +1035,23 @@ private:
 	}
 
 private:
+	System::Void btnShowGraph_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (!isSyntaxChecked)
+		{
+			checkSyntax(false);
+			if (!isSyntaxChecked)
+				return;
+		}
+		if (!isConsistancyChecked)
+		{
+			checkConsistancy(false);
+			if (!isConsistancyChecked)
+				return;
+		}
+		showGraph();
+	}
+
+private:
 	void checkSyntax(bool showMsg);
 	void checkConsistancy(bool showMsg);
 	void minify(void);
@@ -1018,9 +1059,11 @@ private:
 	void toJson(void);
 	void compress(void);
 	void decompress(void);
+	void showGraph(void);
 
 private:
 	XmlDocument *xmlTree;
+
 
 };
 }

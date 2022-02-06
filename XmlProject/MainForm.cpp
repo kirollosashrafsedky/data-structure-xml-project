@@ -242,3 +242,10 @@ void XmlProject::MainForm::decompress()
     //this->richTextBoxOutput->Text = gcnew String(decompressedStr.c_str());
     this->richTextBoxOutput->Text = test;
 }
+
+void XmlProject::MainForm::showGraph()
+{
+    //MessageBox::Show("hellloo from Ashraf");
+    //Xml_DFS(this->xmlTree->getRoot());
+    
+}
