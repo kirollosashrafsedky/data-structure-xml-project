@@ -1,11 +1,10 @@
 #include "MainForm.h"
 #include <string>
-
 #include "XmlSyntaxAndConsistancy.h"
 #include "XmlMinification.h"
 #include "xmlToJson.h"
 #include "XmlCompression.h"
-
+#include"Xmlgraphrepresentation.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -245,7 +244,7 @@ void XmlProject::MainForm::decompress()
 
 void XmlProject::MainForm::showGraph()
 {
-    //MessageBox::Show("hellloo from Ashraf");
-    //Xml_DFS(this->xmlTree->getRoot());
+   Graph g= Xml_DFS(this->xmlTree->getRoot());
+  
     
 }
