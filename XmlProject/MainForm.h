@@ -1060,6 +1060,7 @@ private:
 	void compress(void);
 	void decompress(void);
 	void showGraph(void);
+	void socialVisualizeDraw(std::vector<std::string>& ids, std::vector<std::vector<int>>& edges);
 
 private:
 	XmlDocument *xmlTree;

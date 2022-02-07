@@ -48,6 +48,12 @@
     <ClCompile Include="XmlCompression.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Xmlgraphrepresentation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="graphFrm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainForm.h">
@@ -81,6 +87,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="XmlCompression.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Xmlgraphrepresentation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="graphFrm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

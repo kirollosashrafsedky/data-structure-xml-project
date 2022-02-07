@@ -1,4 +1,5 @@
 #include "MainForm.h"
+#include "graphFrm.h"
 #include <string>
 #include "XmlSyntaxAndConsistancy.h"
 #include "XmlMinification.h"
@@ -68,11 +69,9 @@ void XmlProject::MainForm::checkConsistancy(bool showMsg)
         MessageBox::Show(errorMsgRowCol + "\nThe error was solved, now the xml syntax is valid but it may result is logical error, Please revise it again.");
         String^ sysStr = gcnew String(correctXml.c_str());
         this->richTextBoxInput->Text =sysStr;
-        //xmlParse(correctXml, *(this->xmlTree));
 
     }
     
-    //isConsistancyChecked = true;
 }
 
 void XmlProject::MainForm::minify()
@@ -112,99 +111,14 @@ void XmlProject::MainForm::compress()
     }
     std::string xmlStr = msclr::interop::marshal_as< std::string >(this->richTextBoxInput->Text);
     std::string compressedStr = compressXml(xmlStr);
-    
-    //
-    //std::string testBinary = "";
-    //for (int i = 0; i < compressedStr.length(); i++)
-    //{
-    //    testBinary += toBinary(compressedStr[i]);
-    //}
-
-    //
-    //MessageBox::Show(gcnew String (xmlStr.c_str()));
-
-    //
-
     char* compressedStrArr = new char[compressedStr.size() + 1];
     std::copy(compressedStr.begin(), compressedStr.end(), compressedStrArr);
     compressedStrArr[compressedStr.size()] = '\0';
-    
-    //
-    //cli::array<System::Byte>^ a = gcnew cli::array<::Byte>(compressedStr.length());
-    //int i = compressedStr.length();
-    //while (i-- > 0)
-    //{
-    //    a[i] = compressedStr[i];
-    //}
-
     String^ test = gcnew String(compressedStrArr, 0, compressedStr.length());
-    //
-    
-    //std::string tttt = msclr::interop::marshal_as< std::string >(test);
-
-    //std::string testBinary2 = "";
-    //for (int i = 0; i < tttt.length(); i++)
-    //{
-    //    testBinary2 += toBinary(tttt[i]);
-    //}
-
-    //
-
-
     test = test->Replace("\0", "<null>");
     this->richTextBoxOutput->Text = test;
     this->richTextBoxOutput->Tag = "cxml";
-    //g_compressedStr = test;
-    //Windows::Forms::MessageBox::Show("dd");
 
-    //String^ test = gcnew String(compressedStr.c_str());
-    /*std::wstring_convert<std::codecvt_utf8<char>, char> convert;
-    compressedStr = convert.fro_bytes(compressedStr);*/
-    
-
-    //cli::array<wchar_t>^ a = gcnew cli::array<wchar_t>(compressedStr.length());
-    //int i = compressedStr.length();
-    //while (i-- > 0)
-    //{
-    //    a[i] = compressedStr[i];
-    //}
-
-    //int count = 0;
-    //for (int i = 0; i < compressedStr.length(); i++)
-    //{
-    //    if (compressedStr[i] == '\0')
-    //    {
-    //        count++;
-    //        compressedStr[i] = ' ';
-    //    }
-    //}
-    //MessageBox::Show(to_string(count));
-
-    //String^ test = System::Text::Encoding::UTF8->GetString(a);
-    //interior_ptr<Char> ppchar = PtrToStringChars(test);
-
-    //for (int i = 0; i < compressedStr.length(); i++)
-    //    *ppchar = compressedStr[i];
-
-    //compressedStr = msclr::interop::marshal_as< std::string >(test);
-    
-    //std::ofstream CompreesedXmlFile("new.xml", std::ios::out | std::ios::binary);
-    //char* c = new char[compressedStr.size() + 1];
-    //std::copy(compressedStr.begin(), compressedStr.end(), c);
-    //c[compressedStr.size()] = '\0';
-    //CompreesedXmlFile.write(c, compressedStr.size());
-    //CompreesedXmlFile.close();
-
-    //MessageBox::Show(test);
-
-    //return 
-    //if (this->richTextBoxOutput->Text == System::Text::Encoding::UTF7->GetString(a))
-    //{
-    //    MessageBox::Show("done");
-    //}
-    //MessageBox::Show(this->richTextBoxOutput->Rtf);
-    //this->textBox1->Text = this->richTextBoxOutput->Rtf;
-    //gcnew String(compressedStr.c_str());
 }
 
 void XmlProject::MainForm::decompress()
@@ -225,26 +139,35 @@ void XmlProject::MainForm::decompress()
     String^ test = gcnew String(compressedStrArr, 0, decompressedStr.length());
     test = test->Replace("\0", "<null>");
 
-    /*std::string compressedStr = compressXml(xmlStr);
-    char* compressedStrArr = new char[compressedStr.size() + 1];
-    std::copy(compressedStr.begin(), compressedStr.end(), compressedStrArr);
-    compressedStrArr[compressedStr.size()] = '\0';
-    String^ test = gcnew String(compressedStrArr, 0, compressedStr.length());
-    test = test->Replace("\0", "<null>");
-    this->richTextBoxOutput->Text = test;
-    this->richTextBoxOutput->Tag = "cxml";
-    */
-    //std::string xmlStr = msclr::interop::marshal_as< std::string >(this->richTextBoxInput->Text);
-    //std::string decompressedStr = decompressXml(xmlStr);
-    //std::string minifiedXml = minifcation(xmlStr);
-    // this->richTextBoxOutput->Tag = "xml";
-    //this->richTextBoxOutput->Text = gcnew String(decompressedStr.c_str());
     this->richTextBoxOutput->Text = test;
 }
 
 void XmlProject::MainForm::showGraph()
 {
    Graph g= Xml_DFS(this->xmlTree->getRoot());
-  
+   socialVisualizeDraw(g.getVertex(), g.getEgdes());
     
+}
+
+void XmlProject::MainForm::socialVisualizeDraw(std::vector<std::string>& ids, std::vector<std::vector<int>>& edges)
+{
+    std::ofstream myfile("ss.dot");
+    myfile << "digraph test{\nnode[shape=\"record\" color=\"blue\"]\n";
+    for (int i = 0; i < ids.size(); i++)
+    {
+        myfile << i + 1 << "[ label =\"{" << ids[i] << "}\" ]\n" << std::endl;
+        for (int j = 0; j < edges.size(); j++)
+        {
+            if (edges[i][j])
+            {
+                myfile << i + 1 << "->"
+                    << "{" << j + 1 << "}" << std::endl;
+            }
+        }
+    }
+    myfile << "}";
+    myfile.close();
+    std::system("dot -Tpng -O ss.dot");
+    Form^ rgForm = gcnew graphFrm();
+    rgForm->Show();
 }

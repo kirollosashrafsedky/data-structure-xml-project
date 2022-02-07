@@ -2,11 +2,6 @@
 
 #include"Xmlgraphrepresentation.h"
 
-
-
-
-
-
 Graph::	Graph(int v)
 	{
 		n = v;

@@ -126,6 +126,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="graphFrm.cpp" />
     <ClCompile Include="Json.cpp" />
     <ClCompile Include="JsonNode.cpp" />
     <ClCompile Include="MainForm.cpp" />
@@ -133,12 +134,16 @@
     <ClCompile Include="XmlCompression.cpp" />
     <ClCompile Include="XmlDocument.cpp" />
     <ClCompile Include="XmlError.cpp" />
+    <ClCompile Include="Xmlgraphrepresentation.cpp" />
     <ClCompile Include="XmlMinification.cpp" />
     <ClCompile Include="XmlSyntaxAndConsistancy.cpp" />
     <ClCompile Include="xmlToJson.cpp" />
     <ClCompile Include="XmlTreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="graphFrm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Json.h" />
     <ClInclude Include="JsonNode.h" />
     <ClInclude Include="MainForm.h">
@@ -148,12 +153,16 @@
     <ClInclude Include="XmlCompression.h" />
     <ClInclude Include="XmlDocument.h" />
     <ClInclude Include="XmlError.h" />
+    <ClInclude Include="Xmlgraphrepresentation.h" />
     <ClInclude Include="XmlMinification.h" />
     <ClInclude Include="XmlSyntaxAndConsistancy.h" />
     <ClInclude Include="xmlToJson.h" />
     <ClInclude Include="XmlTreeNode.h" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="graphFrm.resx">
+      <DependentUpon>graphFrm.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
       <SubType>Designer</SubType>

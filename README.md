@@ -24,6 +24,8 @@ A complete xml GUI project that has the following features:
 
 10- The ability to save the output file of all the previous operations in one of the following appropriate extensions ".json, .xml, .cxml"
 
+11- Represent the xml data into graph using matrix representation and visualize the graph using GraphViz. Make sure to download it from [https://graphviz.org/](https://graphviz.org/)
+
 ## Video Link
 
 [https://drive.google.com/drive/u/0/folders/1YkRrme4L-7cAHQxBbX4T2blJeBh7O33L](https://drive.google.com/drive/u/0/folders/1YkRrme4L-7cAHQxBbX4T2blJeBh7O33L)
